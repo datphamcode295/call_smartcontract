@@ -125,7 +125,7 @@ async function transferSolToAccount(
 export const getPayer = (file: String) => {
     const rawdata = fs.readFileSync(
       // replace with your key
-      path.resolve("/home/datpham/.config/solana/" + file + ".json")
+      path.resolve("./private/" + file + ".json")
     );
     const keyData = JSON.parse(rawdata.toString());
     return web3.Keypair.fromSecretKey(new Uint8Array(keyData));
