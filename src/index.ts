@@ -28,7 +28,6 @@ const treasure_ata_usdc = new anchor.web3.PublicKey(
 
 export const getPayer = (file: String) => {
   const rawdata = fs.readFileSync(
-    // replace with your key
     path.resolve("./private/" + file + ".json")
   );
   const keyData = JSON.parse(rawdata.toString());
@@ -49,7 +48,7 @@ async function SwapSolana(
               toEvmRouter: "0",
               toEvmSwapPath: "0",
               toEvmFee:"0",
-              toEvmSqrtRatioX96: "0",
+              toEvmSqrtRatioX96: "0",//the params for instruction
             }).accounts({
                 tokenProgram: TOKEN_PROGRAM_ID, //1
                 uerSourceTokenAccount: user_ata_usdc, //user ray
@@ -57,7 +56,7 @@ async function SwapSolana(
                 userSourceOwner: wallet.publicKey,
                 treasureAta: treasure_ata_usdc,
                 pdaAddress: pda_address,
-              }).signers([]).rpc()
+              }).signers([]).rpc()//by default wallet in program is a singers, if there is anything else, push it in []
   console.log("tx: ", tx);
 }
 
